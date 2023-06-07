@@ -44,8 +44,6 @@ const isEmployee = asyncHandler(async (req, res, next) => {
 const isAdminEmployee = asyncHandler(async (req, res, next) => {
     const  { email } = req.user;
     const adminUser = await User.findOne({ email });
-    console.log(adminUser.role.startsWith('employee'));
-    console.log(adminUser.role);
     if(adminUser.role.startsWith('admin') || adminUser.role.startsWith('employee')) {
         next();
     } else {

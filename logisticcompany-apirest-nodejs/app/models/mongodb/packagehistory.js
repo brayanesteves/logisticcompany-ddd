@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const packageSchema = new mongoose.Schema({
+    idReference: {
+            type: String,
+    },
     trackingNumber: {
             type: String,
         required: true,

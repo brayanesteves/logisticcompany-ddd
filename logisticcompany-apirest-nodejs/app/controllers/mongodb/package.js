@@ -8,11 +8,27 @@ const { sendEmail }        = require("./email");
 const createPackage = asyncHandler(async (req, res) => {
     const trackingNumber    = req.body.trackingNumber;
     const findPackage = await Package.findOne({trackingNumber:trackingNumber});
+    const loginUserId  = req?.user?._id;
     if(!findPackage) {
         const newPackage     = await Package.create(req.body);
-        const packageHistory = await PackageHistory.create(req.body);
+
+        await PackageHistory.create({
+            idReference:newPackage.id,
+            trackingNumber:newPackage.trackingNumber, 
+           currentLocation:newPackage.currentLocation, 
+              deliveryDate:newPackage.deliveryDate,
+                     owner:loginUserId,
+        });
         res.json(newPackage);
     } else {
+        await PackageHistory.create({
+            idReference:findPackage._id,
+            trackingNumber:findPackage.trackingNumber, 
+           currentLocation:findPackage.currentLocation, 
+              deliveryDate:findPackage.deliveryDate,
+                     owner:loginUserId,
+                     action:"Created Package Already Exists.",
+        });
         throw new Error("Package Already Exists.");
     }
 });
@@ -45,6 +61,7 @@ const updatedPackage = asyncHandler(async (req, res) => {
     const { trackingNumber, currentLocation, deliveryDate } = req.body;
     try {
         const packageHistory = await PackageHistory.create({
+            idReference:id,
             trackingNumber:trackingNumber, 
            currentLocation:currentLocation, 
               deliveryDate:deliveryDate,
@@ -87,9 +104,9 @@ const deletePackage = asyncHandler(async (req, res) => {
     const { id } = req.params;
     validateMongDbId(id);
     try {
-
-        const package = await Package.findByIdAndDelete(id);
+        const package = await Package.findById(id);
         const packageHistory = await PackageHistory.create({
+            idReference:package._id,
             trackingNumber:package.trackingNumber, 
            currentLocation:package.currentLocation,
            status:package.status,
@@ -102,8 +119,9 @@ const deletePackage = asyncHandler(async (req, res) => {
                      sendEmail:package.sendEmail,
                     sendSMS:package.sendSMS,
         });
+        const packagedeleted = await Package.findByIdAndDelete(id);
         res.json({
-            package,
+            packagedeleted,
         });
     } catch(error) {
         throw new Error(error);
