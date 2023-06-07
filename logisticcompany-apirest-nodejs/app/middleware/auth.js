@@ -31,4 +31,26 @@ const isAdmin = asyncHandler(async (req, res, next) => {
     }
 });
 
-module.exports = { authMiddleware, isAdmin };
+const isEmployee = asyncHandler(async (req, res, next) => {
+    const  { email } = req.user;
+    const adminUser = await User.findOne({ email });
+    if(adminUser.role !== "employee") {
+        throw new Error('You are not an employee');
+    } else {
+        next();
+    }
+});
+
+const isAdminEmployee = asyncHandler(async (req, res, next) => {
+    const  { email } = req.user;
+    const adminUser = await User.findOne({ email });
+    console.log(adminUser.role.startsWith('employee'));
+    console.log(adminUser.role);
+    if(adminUser.role.startsWith('admin') || adminUser.role.startsWith('employee')) {
+        next();
+    } else {
+        throw new Error('You are not an admin or employee');
+    }
+});
+
+module.exports = { authMiddleware, isAdmin, isEmployee, isAdminEmployee };

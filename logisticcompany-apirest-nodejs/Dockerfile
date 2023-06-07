@@ -1,12 +1,678 @@
-# Get 'node' image 'Dockerhub'
-FROM node:12-alpine
-WORKDIR /usr/src/app
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["node", "app.js"]
+{
+	"info": {
+		"_postman_id": "ccb17c2c-2a74-447e-a437-61609cabff04",
+		"name": "logisticcompany-apirest-nodejs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20955189"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "0 - USER",
+					"item": [
+						{
+							"name": "POST's",
+							"item": [
+								{
+									"name": "[POST] Register a User",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"firstname\":\"Brayan\",\n    \"lastname\":\"Esteves\",\n    \"email\":\"brayan.esteves93@gmail.com\",\n    \"mobile\":\"+584149904852\",\n    \"password\":\"1234\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users/register",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[POST] Login",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\":\"brayan.esteves93@gmail.com\",\n    \"password\":\"1234\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users/login",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[POST] Forgot Password (Token)",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NTU2MjkyNCwiZXhwIjoxNjg1NjQ5MzI0fQ.I1x7kgOdp3ADnWOiJyZxQIWUVtWVe8Nl3F-1TdB13E8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"firstname\":\"Brayan\",\n    \"lastname\":\"Esteves\",\n    \"email\":\"brayan.esteves93@gmail.com\",\n    \"mobile\":\"+584149904852\",\n    \"password\":\"abc1234\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users/forgot-password-token",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"forgot-password-token"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[POST] Reset Password - Token",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\":\"brayan.esteves93@gmail.com\",\n    \"password\":\"abc1234\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users/reset-password/f4138d3c575e0de92c0971adc08fa3d6399ef4c53615c6e3d87466a6d0948336",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"reset-password",
+												"f4138d3c575e0de92c0971adc08fa3d6399ef4c53615c6e3d87466a6d0948336"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "GET's",
+							"item": [
+								{
+									"name": "[GET] All Users",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NDUyNzQ4NywiZXhwIjoxNjg0NjEzODg3fQ.o7NTdqt_bLDX-HK7kQeNJsBflUslXrhpyShcFsqKE-Y",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}users/all-users",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"all-users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[GET] Get User",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NDUyNzQ4NywiZXhwIjoxNjg0NjEzODg3fQ.o7NTdqt_bLDX-HK7kQeNJsBflUslXrhpyShcFsqKE-Y",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}users/get-user/6467d976fb66c566bc423422",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"get-user",
+												"6467d976fb66c566bc423422"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[GET] Refresh Token User",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}users/refresh-token-user",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"refresh-token-user"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[GET] Logout",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}users/logout",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"logout"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "DELETE's",
+							"item": [
+								{
+									"name": "[DELETE] Delete user",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NDUyNzQ4NywiZXhwIjoxNjg0NjEzODg3fQ.o7NTdqt_bLDX-HK7kQeNJsBflUslXrhpyShcFsqKE-Y",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}users/delete-user/6467c0a37925287f8d7e7fd4",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"delete-user",
+												"6467c0a37925287f8d7e7fd4"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "PUT's",
+							"item": [
+								{
+									"name": "[PUT] Updated User",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NDUyNzQ4NywiZXhwIjoxNjg0NjEzODg3fQ.o7NTdqt_bLDX-HK7kQeNJsBflUslXrhpyShcFsqKE-Y",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"firstname\":\"Brayan\",\n    \"lastname\":\"Esteves\",\n    \"email\":\"brayan.esteves94@gmail.com\",\n    \"mobile\":\"+584149904852\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users/update-user/6467bc5adc0c319484a158af",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"update-user",
+												"6467bc5adc0c319484a158af"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[PUT] Blocked User",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NDUyNzQ4NywiZXhwIjoxNjg0NjEzODg3fQ.o7NTdqt_bLDX-HK7kQeNJsBflUslXrhpyShcFsqKE-Y",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users/block-user/6467e32bab25458336f082f6",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"block-user",
+												"6467e32bab25458336f082f6"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[PUT] Unblocked User",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NDUyNzQ4NywiZXhwIjoxNjg0NjEzODg3fQ.o7NTdqt_bLDX-HK7kQeNJsBflUslXrhpyShcFsqKE-Y",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users/unblock-user/6467e32bab25458336f082f6",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"unblock-user",
+												"6467e32bab25458336f082f6"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[PUT] Updated or Reset Password",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NTY0Mjk1NiwiZXhwIjoxNjg1NzI5MzU2fQ.jfZvQTYjY8236skOo7BTJFZZFKzlfEgIK0mpWbGkiQ0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"password\":\"abc1234\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users/password-reset",
+											"host": [
+												"{{base_url}}users"
+											],
+											"path": [
+												"password-reset"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "2 - PACKAGE",
+					"item": [
+						{
+							"name": "POST's",
+							"item": [
+								{
+									"name": "[POST] Add package",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2ZkZDE5OGUzYmI2NDMwMWQ0NGYxMSIsImlhdCI6MTY4NjEwNTkyMywiZXhwIjoxNjg2MTkyMzIzfQ.USXXowuefPYN1SPD4wmPpYeuZgV4Xxf716RFh36ju5w",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n     \"trackingNumber\":\"12345\",\n    \"currentLocation\":\"Venezuela\",\n       \"deliveryDate\":\"06/06/2023\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}package/add-package",
+											"host": [
+												"{{base_url}}package"
+											],
+											"path": [
+												"add-package"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "PUT's",
+							"item": [
+								{
+									"name": "[PUT] Update Package",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2ZmMWU0ODEyN2EwNzIxYjNjZjdmZCIsImlhdCI6MTY4NjEwNjkxNiwiZXhwIjoxNjg2MTkzMzE2fQ.QDh8tPy_rfiTu5dvGafKUes3u--xNa5cLbxS3oOPEPI",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n     \"trackingNumber\":\"12345\",\n    \"currentLocation\":\"Venezuela\",\n             \"status\":\"in warehouse\",\n       \"deliveryDate\":\"06/06/2023\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}package/update-package/647ff01f50c2708544ebc122",
+											"host": [
+												"{{base_url}}package"
+											],
+											"path": [
+												"update-package",
+												"647ff01f50c2708544ebc122"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "GET's",
+							"item": [
+								{
+									"name": "[GET] Get Package",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2ZmMWU0ODEyN2EwNzIxYjNjZjdmZCIsImlhdCI6MTY4NjEwNjYwNCwiZXhwIjoxNjg2MTkzMDA0fQ.JB4w6gODJt-1wYQb0eE1dgLdUR1ipWxsoT9gvF0D390",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}package/get-package/647ff01f50c2708544ebc122",
+											"host": [
+												"{{base_url}}package"
+											],
+											"path": [
+												"get-package",
+												"647ff01f50c2708544ebc122"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[GET] Get All Packages",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2ZkZDE5OGUzYmI2NDMwMWQ0NGYxMSIsImlhdCI6MTY4NjEwNTkyMywiZXhwIjoxNjg2MTkyMzIzfQ.USXXowuefPYN1SPD4wmPpYeuZgV4Xxf716RFh36ju5w",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}package/get-packages",
+											"host": [
+												"{{base_url}}package"
+											],
+											"path": [
+												"get-packages"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[GET] Get All Packages Historys",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2ZmMWU0ODEyN2EwNzIxYjNjZjdmZCIsImlhdCI6MTY4NjEwNjYwNCwiZXhwIjoxNjg2MTkzMDA0fQ.JB4w6gODJt-1wYQb0eE1dgLdUR1ipWxsoT9gvF0D390",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}package/get-packagehistorys",
+											"host": [
+												"{{base_url}}package"
+											],
+											"path": [
+												"get-packagehistorys"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "DELETE's",
+							"item": [
+								{
+									"name": "[DELETE] Delete Package",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjdkOTc2ZmI2NmM1NjZiYzQyMzQyMiIsImlhdCI6MTY4NTY1MDA3MSwiZXhwIjoxNjg1NzM2NDcxfQ.V02Meq5VcmnkR7rgtIHHU-M9wNLim7iTgAimFgTpdbo",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}package/delete-package/6478fa51f1cf794fd59f770d",
+											"host": [
+												"{{base_url}}package"
+											],
+											"path": [
+												"delete-package",
+												"6478fa51f1cf794fd59f770d"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api/0.0.1/",
+			"type": "string"
+		}
+	]
+}

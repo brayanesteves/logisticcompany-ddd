@@ -20,15 +20,15 @@ const packageSchema = new mongoose.Schema({
     },
     locationHistory: [{
         location: String,
-            date: { type: Date, default: Date.now }
+        date: { type: Date, default: Date.now }
     }],
     deliveryDate: {
         type: Date,
     required: true,
     },
     owner: {
-            type: mongoose.Schema.Types.ObjectId,
-             ref: 'User',
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     action: {
         type:String,
@@ -44,4 +44,4 @@ const packageSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("Package", packageSchema);
+module.exports = mongoose.model("PackageHistory", packageSchema);
